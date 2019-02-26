@@ -8,12 +8,6 @@ tools{
 }
 
 stages{
-	stage('preparing code from git'){
-		steps{
-		git credentialsId: '5afbf9ec-ca5f-4b3b-aacf-df3cd6d6e68a', url: 'https://github.com/baskivins/my_web_application_1.git'
-		}
-	}
-
 	stage('build the project'){
 		steps{
 			bat 'mvn clean install'
