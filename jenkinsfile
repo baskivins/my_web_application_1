@@ -8,7 +8,7 @@ tools{
 }
 
 stages{
-	stage('build the project'){
+	stage('build the projects'){
 		steps{
 			bat 'mvn clean install'
 		}
