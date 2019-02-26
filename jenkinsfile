@@ -1,0 +1,28 @@
+pipeline{
+
+agent {label 'master'}
+
+tools{
+	maven 'maven'
+	jdk 'jdk8'
+}
+
+stages{
+	stage('preparing code from git'){
+		steps{
+		git credentialsId: '5afbf9ec-ca5f-4b3b-aacf-df3cd6d6e68a', url: 'https://github.com/baskivins/my_web_application_1.git'
+		}
+	}
+
+	stage('build the project'){
+		steps{
+			bat 'mvn clean install'
+		}
+	}
+	
+	stage('send email'){
+		steps{
+			emailext attachLog: true, body: 'build success message or failure', subject: 'jenkins test build', to: 'baskaran.g@gmail.com'
+		}
+}
+}
